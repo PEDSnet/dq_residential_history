@@ -25,11 +25,11 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
-> - `pct_records_with_2010_tract`: The percentage of records in the year 2010 that have a valid geocode_tract (non-null and not an empty string).
-> - `pct_records_with_2020_tract`: The percentage of records in the year 2020 that have a valid geocode_tract (non-null and not an empty string).
-> - `pct_records_with_2010_block_group`: The percentage of records in the year 2010 that have a valid geocode_group (non-null and not an empty string).
-> - `pct_records_with_2020_block_group`: The percentage of records in the year 2020 that have a valid geocode_group (non-null and not an empty string).
+> - `site`: The site identifier for the data being processed.
+> - `pct_records_with_2010_tract`: The percentage of location_history records in the year 2010 that have a valid geocode_tract.
+> - `pct_records_with_2020_tract`: The percentage of location_history records in the year 2020 that have a valid geocode_tract.
+> - `pct_records_with_2010_block_group`: The percentage of location_history records in the year 2010 that have a valid geocode_group.
+> - `pct_records_with_2020_block_group`: The percentage of location_history records in the year 2020 that have a valid geocode_group.
 
 ### `pct_pats_with_loc_his_and_fips`
 
@@ -37,7 +37,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields:
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `pct_pats_with_2010_tract`: The percentage of patients who have location history records with census tract data in 2010, calculated as the number of patients with census tract data divided by the total number of patients.
 > - `pct_pats_with_2020_tract`: The percentage of patients who have location history records with census tract data in 2020, calculated as the number of patients with census tract data divided by the total number of patients.
 > - `pct_pats_with_2010_block_group`: The percentage of patients who have location history records with census block group data in 2010, calculated as the number of patients with census block group data divided by the total number of patients.
@@ -48,7 +48,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields:
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `ct_pats_missing_loc_his_record`: The count of patients (from the person table) who do not have any corresponding location history records.
 > - `pct_pats_missing_loc_his_record`: The percentage of patients missing location history records, calculated as the count of missing records divided by the total number of patients.
 
@@ -57,7 +57,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields:
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `ct_loc_his_dup_records_2010`: The total count of duplicate location history records for census year 2010.
 > - `ct_loc_his_dup_records_distinct_2010`: The count of distinct duplicate location history records for census year 2010.
 > - `pct_loc_his_dup_records_2010`: The percentage of duplicate location history records for census year 2010, calculated as the total duplicates divided by the total records.
@@ -71,7 +71,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields:
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `ct_pats_dup_records_2010`: The count of distinct patients who have duplicate location history records in 2010.
 > - `pct_pats_dup_records_2010`: The percentage of patients with duplicate location history records in 2010, calculated as the count of such patients divided by the total number of patients.
 > - `ct_pats_dup_records_2020`: The count of distinct patients who have duplicate location history records in 2020.
@@ -82,7 +82,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `ct_loc_his_recs_with_overlap_2010_cbg_dates`: The count of location history records for the year 2010 that have overlapping census block group (census_block_group) date ranges.
 > - `pct_loc_his_recs_with_overlap_2010_cbg_dates`: The percentage of location history records for the year 2010 that have overlapping census block group (census_block_group) date ranges, calculated as the count of overlapping records divided by the total number of records.
 > - `ct_loc_his_recs_with_overlap_2020_cbg_dates`: The count of location history records for the year 2020 that have overlapping census block group (census_block_group) date ranges.
@@ -93,7 +93,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields:
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `ct_pats_with_overlap_2010_cbg_dates`: The count of patients whose location history records overlap in census block groups (CBG) for the year 2010.
 > - `pct_pats_with_overlap_2010_cbg_dates`: The percentage of patients whose location history records overlap in census block groups (CBG) for the year 2010, calculated as the count of patients with overlapping records divided by the total number of patients.
 > - `ct_pats_with_overlap_2020_cbg_dates`: The count of patients whose location history records overlap in census block groups (CBG) for the year 2020.
@@ -104,7 +104,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > 
 > Table Fields
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `ct_pats_with_30_day_gap`: The count of distinct patients who have at least one gap of more than 30 days between consecutive location history records.
 > - `pct_pats_with_30_day_gap`: The percentage of patients who have at least one gap of more than 30 days between location history records, calculated as the count of such patients divided by the total number of patients.
 
@@ -113,7 +113,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 
 > Table Fields
 > 
-> - `site`: The site identifier for the data being processed (represented by the variable {{ site }}).
+> - `site`: The site identifier for the data being processed.
 > - `year`: The year spanning from 2009 to 2024.
 > - `ct_pats_with_loc_his_for_year`: The count of distinct patients who have location history records during the given year.
 > - `pct_pats_with_loc_his_for_year`: The percentage of patients who have location history records in that year, calculated as the count of patients with records divided by the total number of patients.
