@@ -8,7 +8,7 @@ select
     geocode_year
 from
     {{site}}_pedsnet.location_history lh 
-left join 
+inner join 
     {{site}}_pedsnet.location_fips fips 
     on lh.location_id = fips.location_id
 ),
@@ -82,8 +82,8 @@ INSERT INTO dq_residential_history.pct_loc_his_records_with_overlapping_geocode_
 select 
 	'{{ site }}' as site,
 	max(coalesce(case when geocode_year = '2010' then ct_loc_his_records_with_overlap_cbg_dates end,0)) as ct_loc_his_recs_with_overlap_2010_cbg_dates,
-	max(coalesce(case when geocode_year = '2020' then trunc((ct_loc_his_records_with_overlap_cbg_dates::numeric / ct_total_loc_his_records::numeric),4) end,0)) as pct_loc_his_recs_with_overlap_2010_cbg_dates,
-	max(coalesce(case when geocode_year = '2010' then ct_loc_his_records_with_overlap_cbg_dates end,0)) as ct_loc_his_recs_with_overlap_2020_cbg_dates,
+	max(coalesce(case when geocode_year = '2010' then trunc((ct_loc_his_records_with_overlap_cbg_dates::numeric / ct_total_loc_his_records::numeric),4) end,0)) as pct_loc_his_recs_with_overlap_2010_cbg_dates,
+	max(coalesce(case when geocode_year = '2020' then ct_loc_his_records_with_overlap_cbg_dates end,0)) as ct_loc_his_recs_with_overlap_2020_cbg_dates,
 	max(coalesce(case when geocode_year = '2020' then trunc((ct_loc_his_records_with_overlap_cbg_dates::numeric / ct_total_loc_his_records::numeric),4) end,0)) as pct_loc_his_recs_with_overlap_2020_cbg_dates
 from 
 	get_denominator, get_numerators;
