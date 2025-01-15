@@ -3,30 +3,28 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 
 # Contents
 
-##Config/
-###`database.ini` 
+## Config/
+### `database.ini` 
 > Enter database connection strings here
 
-###`config.py` 
+### `config.py` 
 > Python helper functions to read the database.ini file and connect to either a postgres or trino database. 
 
-##SRC/
-###`run_queries.py` 
+## SRC/
+### `run_queries.py` 
 >Functions for rendering and running all .sql files. Specifically, it can iterate across all PEDSnet sites by passing in a `site` variable into each SQL query file.
 
-###`main.ipynb` 
+### `main.ipynb` 
 > Notebook where run_queries.py functions are ran
 
-###`pull_valid_cbgs_tidycensus.R` 
-> R script for pulling list of valid US census codes
+### `pull_valid_cbgs_tidycensus.R` 
+> R script for pulling list of valid US census codes using tidycensus package. An API key is required and can be requested for free here: https://api.census.gov/data/key_signup.html
 
-
-##Reporting/
+## Reporting/
 ### `geocoding_summary.Rmd` 
 > R script for visualizing results 
 
 ## SQL/
-
 ### `create_schema.sql`
 > Creates the `dq_residential_history` schema.
 
