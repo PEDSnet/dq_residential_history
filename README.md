@@ -117,3 +117,45 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > - `year`: The year spanning from 2009 to 2024.
 > - `ct_pats_with_loc_his_for_year`: The count of distinct patients who have location history records during the given year.
 > - `pct_pats_with_loc_his_for_year`: The percentage of patients who have location history records in that year, calculated as the count of patients with records divided by the total number of patients.
+
+### `pct_distinct_2010_geocodes_invalid`
+> Calculates the percentage of distinct 2010 Census Block Groups (CBGs) in the location_fips table that are invalid by comparing them to a US Census reference table (fips_2010)
+
+> Table Fields
+> 
+> - `site`: The site identifier for the data being processed.
+> - `ct_distinct_2010_cbg_invalid`: The count of distinct 2010 Census Block Groups in the location_fips table that do not exist in the reference table fips_2010.
+> - `ct_distinct_2010_cbg_total`: The total count of distinct 2010 Census Block Groups in the location_fips table.
+> - `pct_distinct_2010_cbg_invalid`: The percentage of invalid distinct 2010 Census Block Groups, calculated as the ratio of ct_distinct_2010_cbg_invalid to ct_distinct_2010_cbg_total.
+
+### `pct_distinct_2020_geocodes_invalid`
+> Calculates the percentage of distinct 2020 Census Block Groups (CBGs) in the location_fips table that are invalid by comparing them to a US Census reference table (fips_2020)
+
+> Table Fields
+> 
+> - `site`: The site identifier for the data being processed.
+> - `ct_distinct_2020_cbg_invalid`: The count of distinct 2020 Census Block Groups in the location_fips table that do not exist in the reference table fips_2020.
+> - `ct_distinct_2020_cbg_total`: The total count of distinct 2020 Census Block Groups in the location_fips table.
+> - `pct_distinct_2020_cbg_invalid`: The percentage of invalid distinct 2020 Census Block Groups, calculated as the ratio of ct_distinct_2020_cbg_invalid to ct_distinct_2020_cbg_total.
+
+### `pct_loc_his_records_with_invalid_2010_geocodes`
+
+> Calculates the percentage of location_history records with a 2010 Census Block Group (CBG) whose CBG value is invalid by comparing to a US Census reference table (fips_2020)
+> 
+> Table Fields
+> 
+> - `site`: The site identifier for the data being processed.
+> - `ct_loc_his_with_2010_cbg_invalid`: The count of location_history records that have a 2010 Census Block Group in the location_fips table that dose not exist in the reference table fips_2010
+> - `ct_loc_his_with_2010_cbg_total`: The total count of location_history records that have a 2010 Census Block Group in the location_fips table.
+> - `pct_loc_his_with_2010_cbg_invalid`: The percentage of location_history records with an invalid 2010 Census Block Group, calculated as the ratio of ct_loc_his_with_2010_cbg_invalid to ct_loc_his_with_2010_cbg_total
+
+### `pct_loc_his_records_with_invalid_2020_geocodes`
+
+> Calculates the percentage of location_history records with a 2020 Census Block Group (CBG) whose CBG value is invalid by comparing to a US Census reference table (fips_2020)
+> 
+> Table Fields
+> 
+> - `site`: The site identifier for the data being processed.
+> - `ct_loc_his_with_2020_cbg_invalid`: The count of location_history records that have a 2020 Census Block Group in the location_fips table that dose not exist in the reference table fips_2020
+> - `ct_loc_his_with_2020_cbg_total`: The total count of location_history records that have a 2020 Census Block Group in the location_fips table.
+> - `pct_loc_his_with_2020_cbg_invalid`: The percentage of location_history records with an invalid 2020 Census Block Group, calculated as the ratio of ct_loc_his_with_2010_cbg_invalid to ct_loc_his_with_2010_cbg_total
