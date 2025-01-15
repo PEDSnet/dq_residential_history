@@ -1,5 +1,4 @@
-
-# **Residential History Geocode Metrics**
+# **Residential History Data Quality**
 This repository is used to run a set of metrics on Site-level PEDSnet data for determining the status and quality of residential history data. Output metrics are written to tables in a schema called `dq_residential_history`. Metrics are then collected into an html report.
 
 # Contents
