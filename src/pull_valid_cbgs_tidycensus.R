@@ -58,7 +58,7 @@ site_states <- dbGetQuery(con, query)
 states <- site_states$geocode_state
 
 #use tidycensus get_decennial function to pull 2010 cbgs for each state
-2010_block_groups <- lapply(states, function(state) {
+block_groups_2010 <- lapply(states, function(state) {
   print(state)
   get_decennial(
     geography = "block group",
@@ -71,12 +71,12 @@ states <- site_states$geocode_state
 })
 
 #write 2010 cbgs to database
-2010_block_groups_all <- bind_rows(2010_block_groups)
+block_groups_2010_all <- bind_rows(block_groups_2010)
 dbExecute(con,'set search_path to dq_residential_history')
 dbWriteTable(con, "fips_2010", combined_pop, row.names = FALSE)
 
 #use tidycensus get_decennial function to pull 2020 cbgs for each state
-2020_block_groups <- lapply(states, function(state) {
+block_groups_2020 <- lapply(states, function(state) {
   print(state)
   get_decennial(
     geography = "block group",
@@ -89,6 +89,6 @@ dbWriteTable(con, "fips_2010", combined_pop, row.names = FALSE)
 })
 
 #write 2020 cbgs to database
-2020_block_groups_all <- bind_rows(2020_block_groups)
+block_groups_2020_all <- bind_rows(block_groups_2020)
 dbExecute(con,'set search_path to dq_residential_history')
 dbWriteTable(con, "fips_2020", combined_pop, row.names = FALSE)
