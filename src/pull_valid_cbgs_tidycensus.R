@@ -1,4 +1,3 @@
-
 ### PULL Valid 2010 and 2020
 install.packages("RPostgres")
 install.packages("DBI")
@@ -93,4 +92,3 @@ dbWriteTable(con, "fips_2010", combined_pop, row.names = FALSE)
 2020_block_groups_all <- bind_rows(2020_block_groups)
 dbExecute(con,'set search_path to dq_residential_history')
 dbWriteTable(con, "fips_2020", combined_pop, row.names = FALSE)
-
