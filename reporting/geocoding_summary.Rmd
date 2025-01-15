@@ -31,6 +31,8 @@ config('retain_intermediates', FALSE)
 
 get_results <- function(tbl_name) {
     rslt <- results_tbl(tbl_name) %>% collect()
+    
+    rslt
 }
 
 prettify_kable <- function(data) {
@@ -263,5 +265,67 @@ get_results('pct_pats_per_year_with_encompassing_loc_his') %>%
   labs(x = 'Year',
        y = 'Prop. Patients with Full History', 
        color = 'Site')
+
+```
+
+## Census Linkage
+
+### Location FIPS Invalid Census Block Group
+
+Calculates the percentage of distinct 2010 or 2020 Census Block Groups (CBGs) in the `location_fips` table that are invalid by comparing them to a US Census reference table
+
+```{r}
+
+cbg_2010 <- get_results('pct_distinct_2010_geocodes_invalid') %>%
+  select(site, pct_distinct_2010_cbg_invalid) %>%
+  pivot_longer(!site) %>%
+  mutate(census_year = '2010 Census Block Group')
+
+cbg_2020 <- get_results('pct_distinct_2020_geocodes_invalid') %>%
+  select(site, pct_distinct_2020_cbg_invalid) %>%
+  pivot_longer(!site) %>%
+  mutate(census_year = '2020 Census Block Group')
+
+cbg_2010 %>%
+  union(cbg_2020) %>%
+  ggplot(aes(x = site, y = value, fill = site)) +
+  geom_col() +
+  facet_wrap(~census_year) +
+  scale_color_brewer(palette = 'Paired') +
+  theme_minimal() +
+  theme(legend.position = 'none',
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  labs(x = 'Site',
+       y = 'Proportion Invalid')
+
+```
+
+### Location History Records with Invalid Census Block Group
+
+Calculates the percentage of `location_history` records with a 2010 or 2020 Census Block Group (CBG) whose CBG value is invalid by comparing to a US Census reference table
+
+```{r}
+
+cbg_2010 <- get_results('pct_loc_his_records_with_invalid_2010_geocodes') %>%
+  select(site, pct_loc_his_with_2010_cbg_invalid) %>%
+  pivot_longer(!site) %>%
+  mutate(census_year = '2010 Census Block Group')
+
+cbg_2020 <- get_results('pct_loc_his_records_with_invalid_2020_geocodes') %>%
+  select(site, pct_loc_his_with_2020_cbg_invalid) %>%
+  pivot_longer(!site) %>%
+  mutate(census_year = '2020 Census Block Group')
+
+cbg_2010 %>%
+  union(cbg_2020) %>%
+  ggplot(aes(x = site, y = value, fill = site)) +
+  geom_col() +
+  facet_wrap(~census_year) +
+  scale_color_brewer(palette = 'Paired') +
+  theme_minimal() +
+  theme(legend.position = 'none',
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  labs(x = 'Site',
+       y = 'Proportion Invalid')
 
 ```
