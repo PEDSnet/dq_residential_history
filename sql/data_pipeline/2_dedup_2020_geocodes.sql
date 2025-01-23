@@ -1,8 +1,9 @@
 -- step 2
--- link location_history_dedup_location_id to 2010 fips codes
--- then consolidates records with same entity_id, 2010 census_block_group, and overlapping start_date and end_date
-create table {{ site }}_pedsnet.location_history_dedup_2010_geocodes as 
-with lh_2010_fips_linkage as (
+-- link location_history_normalized to 2020 fips codes
+-- then consolidates records with same entity_id, 2020 census_block_group, and overlapping start_date and end_date
+BEGIN;
+create table {{ site }}_pedsnet.location_history_dedup_2020_geocodes as 
+with lh_2020_fips_linkage as (
     select 
         location_history_id,
         entity_id as person_id,
@@ -11,11 +12,11 @@ with lh_2010_fips_linkage as (
         coalesce(end_date,'9999-12-31'::date) as end_date,
         trim(geocode_state||geocode_county||geocode_tract||geocode_group) as census_block_group,
     from
-        SITE_pedsnet.location_history_dedup_location_id_overlap lh 
+        {{ site }}_pedsnet.location_history_normalized lh 
     inner join 
-        SITE_pedsnet.location_fips fips 
+        {{ site }}_pedsnet.location_fips fips 
         on lh.location_id = fips.location_id
-        and fips.geocode_year = 2010
+        and fips.geocode_year = 2020
 )
 
 partition_and_sort as (
@@ -28,7 +29,7 @@ partition_and_sort as (
     	end_date,
         LAG(end_date) OVER (partition by person_id, census_block_group ORDER BY person_id, census_block_group, start_date, end_date) AS prev_end_date
     FROM 
-        lh_2010_fips_linkage
+        lh_2020_fips_linkage
 ),
 
 group_overlapping_cbg AS (
@@ -61,7 +62,7 @@ select
     person_id,
     earliest_start_date::date as start_date,
     latest_end_date::date as end_date,
-    2010 as census_year,
+    2020 as census_year,
     census_block_group
 from    
     get_min_max_date_in_group
@@ -71,3 +72,4 @@ order by
     person_id,
     start_date,
     end_date;
+COMMIT;

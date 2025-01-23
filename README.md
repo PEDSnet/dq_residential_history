@@ -24,7 +24,7 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 ### `geocoding_summary.Rmd` 
 > R script for visualizing results 
 
-## SQL/
+## SQL/metric_calculation/
 ### `create_schema.sql`
 > Creates the `dq_residential_history` schema.
 
@@ -170,3 +170,17 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 > - `ct_loc_his_with_2020_cbg_invalid`: The count of location_history records that have a 2020 Census Block Group in the location_fips table that dose not exist in the reference table fips_2020
 > - `ct_loc_his_with_2020_cbg_total`: The total count of location_history records that have a 2020 Census Block Group in the location_fips table.
 > - `pct_loc_his_with_2020_cbg_invalid`: The percentage of location_history records with an invalid 2020 Census Block Group, calculated as the ratio of ct_loc_his_with_2010_cbg_invalid to ct_loc_his_with_2010_cbg_total
+
+## SQL/data_pipeline/
+### `1_location_history_normalization.sql`
+> Create a new "normalized" location_history table in 3 steps:
+> 
+> 1. Consolidate location_history records with same entity_id, location_id and overlapping start_date and end_date 
+> 2. Close any large date gaps between a patient's location_history records
+> 3. Add records for any patients that do not have a location_history record but do have a valid location_id in the person table and a visit (take start_date = max(visit_start_date)
+
+### `2_dedup_2010_geocodes.sql`
+> Creates a new table that links location_history_normalized to 2010 census block group codes in the location FIPS table and then consolidates records with same entity_id, 2010 census_block_group, and overlapping start_date and end_date.
+
+### `2_dedup_2020_geocodes.sql`
+> Creates a new table that links location_history_normalized to 2020 census block group codes in the location FIPS table and then consolidates records with same entity_id, 2020 census_block_group, and overlapping start_date and end_date.
