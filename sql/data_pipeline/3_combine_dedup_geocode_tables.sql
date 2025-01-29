@@ -34,4 +34,4 @@ drop table {{ site }}_pedsnet.location_history_dedup_2010_geocodes;
 drop table {{ site }}_pedsnet.location_history_dedup_2020_geocodes;
 DROP Sequence {{ site }}_pedsnet.location_history_id_missing_pats;
 DROP Sequence {{ site }}_pedsnet.location_history_dedup_geocodes_id;
-
+COMMIT;
