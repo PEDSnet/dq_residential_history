@@ -1,8 +1,7 @@
--- step 2
 -- link location_history_normalized to 2020 fips codes
 -- then consolidates records with same entity_id, 2020 census_block_group, and overlapping start_date and end_date
 BEGIN;
-create table {{ site }}_pedsnet.location_history_dedup_2020_geocodes as 
+create table if not exists {{ site }}_pedsnet.location_history_dedup_2020_geocodes as 
 with lh_2020_fips_linkage as (
     select 
         location_history_id,

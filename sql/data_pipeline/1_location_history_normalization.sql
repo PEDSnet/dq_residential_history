@@ -2,7 +2,7 @@
 -- consolidate records with same entity_id, location_id and overlapping start_date and end_date
 -- create new table location_history_normalized
 BEGIN;
-create table {{ site }}_pedsnet.location_history_normalized as 
+create table if not exists {{ site }}_pedsnet.location_history_normalized as 
 WITH partition_and_sort AS (
     SELECT 
 		location_history_id,
@@ -133,7 +133,7 @@ select
 	0 as relationship_type_concept_id,
 	most_recent_visit_date as start_date,
 	most_recent_visit_date::timestamp as start_datetime
-from 
+from
     patients_without_location_history p
 inner join  
 	(
