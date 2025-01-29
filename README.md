@@ -3,6 +3,9 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 
 # Contents
 
+## `main.ipynb` 
+> Notebook where run_queries.py functions are ran
+
 ## Config/
 ### `database.ini` 
 > Enter database connection strings here
@@ -13,9 +16,6 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 ## SRC/
 ### `run_queries.py` 
 >Functions for rendering and running all .sql files. Specifically, it can iterate across all PEDSnet sites by passing in a `site` variable into each SQL query file.
-
-### `main.ipynb` 
-> Notebook where run_queries.py functions are ran
 
 ### `pull_valid_cbgs_tidycensus.R` 
 > R script for pulling list of valid US census codes using tidycensus package. An API key is required and can be requested for free here: https://api.census.gov/data/key_signup.html
@@ -184,3 +184,6 @@ This repository is used to run a set of metrics on Site-level PEDSnet data for d
 
 ### `2_dedup_2020_geocodes.sql`
 > Creates a new table that links location_history_normalized to 2020 census block group codes in the location FIPS table and then consolidates records with same entity_id, 2020 census_block_group, and overlapping start_date and end_date.
+
+### `3_combine_dedup_geocode_tables.sql`
+> Unions the results of 2_dedup_2010_geocodes and 2_dedup_2020_geocodes into one unified ordered table, then drops all set up tables and sequences.
