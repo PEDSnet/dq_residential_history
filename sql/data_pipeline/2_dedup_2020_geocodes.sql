@@ -9,14 +9,14 @@ with lh_2020_fips_linkage as (
         lh.location_id as location_id,
         start_date,
         coalesce(end_date,'9999-12-31'::date) as end_date,
-        trim(geocode_state||geocode_county||geocode_tract||geocode_group) as census_block_group,
+        trim(geocode_state||geocode_county||geocode_tract||geocode_group) as census_block_group
     from
         {{ site }}_pedsnet.location_history_normalized lh 
     inner join 
         {{ site }}_pedsnet.location_fips fips 
         on lh.location_id = fips.location_id
         and fips.geocode_year = 2020
-)
+),
 
 partition_and_sort as (
     SELECT 

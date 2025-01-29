@@ -1,4 +1,4 @@
-from config import *
+from config.config import *
 import time
 import datetime
 import os
@@ -20,7 +20,7 @@ def read_and_render_sql_file(file_path, site = ''):
 #execute SQL file
 def execute_sql_file(sql_query):
     try:
-        with get_db_connection('database.ini') as conn:
+        with get_db_connection('config/database.ini') as conn:
             with conn.cursor() as cur:
                 cur.execute(sql_query)
                 print("Successfully executed SQL file")
