@@ -14,7 +14,7 @@ library(tidyverse)
 library(tidycensus)
 
 #postgres connection
-db_config <- read.ini("database.ini")
+db_config <- read.ini("config/database.ini")
 postgresql_config <- db_config$postgresql
 con <- dbConnect(RPostgres::Postgres(),
                  dbname <- postgresql_config$database,
