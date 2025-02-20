@@ -11,6 +11,9 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+
+# devtools::install_github('PEDSnet/argos')
+
 require(argos)
 require(srcr)
 require(dplyr)
