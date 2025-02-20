@@ -73,7 +73,7 @@ block_groups_2010 <- lapply(states, function(state) {
 #write 2010 cbgs to database
 block_groups_2010_all <- bind_rows(block_groups_2010)
 dbExecute(con,'set search_path to dq_residential_history')
-dbWriteTable(con, "fips_2010", combined_pop, row.names = FALSE)
+dbWriteTable(con, "fips_2010", block_groups_2010_all, row.names = FALSE)
 
 #use tidycensus get_decennial function to pull 2020 cbgs for each state
 block_groups_2020 <- lapply(states, function(state) {
@@ -91,4 +91,4 @@ block_groups_2020 <- lapply(states, function(state) {
 #write 2020 cbgs to database
 block_groups_2020_all <- bind_rows(block_groups_2020)
 dbExecute(con,'set search_path to dq_residential_history')
-dbWriteTable(con, "fips_2020", combined_pop, row.names = FALSE)
+dbWriteTable(con, "fips_2020", block_groups_2020_all, row.names = FALSE)
