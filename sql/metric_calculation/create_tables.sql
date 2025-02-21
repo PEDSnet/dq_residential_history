@@ -68,4 +68,34 @@ CREATE TABLE IF NOT EXISTS dq_residential_history.pct_loc_his_records_with_overl
     pct_loc_his_recs_with_overlap_2020_cbg_dates numeric
 );
 
+CREATE TABLE IF NOT EXISTS dq_residential_history.pct_distinct_2010_geocodes_invalid (
+		site varchar(10),
+		ct_distinct_2010_cbg_invalid int,
+		ct_distinct_2010_cbg_total int,
+		pct_distinct_2010_cbg_invalid numeric
+);
+
+CREATE TABLE IF NOT EXISTS dq_residential_history.pct_distinct_2020_geocodes_invalid (
+		site varchar(10),
+		ct_distinct_2020_cbg_invalid int,
+		ct_distinct_2020_cbg_total int,
+		pct_distinct_2020_cbg_invalid numeric
+);
+
+CREATE TABLE IF NOT EXISTS dq_residential_history.pct_loc_his_records_with_invalid_2010_geocodes 
+	(
+		site varchar(10),
+		ct_loc_his_with_2010_cbg_invalid int, 
+		ct_loc_his_with_2010_cbg_total int,
+		pct_loc_his_with_2010_cbg_invalid numeric
+);
+
+CREATE TABLE IF NOT EXISTS dq_residential_history.pct_loc_his_records_with_invalid_2020_geocodes 
+	(
+		site varchar(10),
+		ct_loc_his_with_2020_cbg_invalid int, 
+		ct_loc_his_with_2020_cbg_total int,
+		pct_loc_his_with_2020_cbg_invalid numeric
+);
+
 commit;
