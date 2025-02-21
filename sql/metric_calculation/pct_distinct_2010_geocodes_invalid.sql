@@ -13,7 +13,7 @@ select
 from 
 	cbgs
 where
-	not exists (select 1 from dq_residential_history.fips_2010 fips where fips.geoid = census_block_group)
+	not exists (select 1 from dq_residential_history.fips_2010 fips where "GEOID" = census_block_group)
 ),
 
 get_denominator as (
